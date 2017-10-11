@@ -11,8 +11,8 @@
         </div>
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
-            <label for="int">Id Level <?php echo form_error('id_level') ?></label>
-            <input type="text" class="form-control" name="id_level" id="id_level" placeholder="Id Level" value="<?php echo $id_level; ?>" />
+            <label for="int">Level <?php echo form_error('id_level') ?></label>
+             <?php echo cmb_dinamis('id_level','level','nama_level','id_level',$id_level); ?>
         </div>
 	    <div class="form-group">
             <label for="varchar">Username <?php echo form_error('username') ?></label>
@@ -23,8 +23,8 @@
             <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="int">Id Atasan <?php echo form_error('id_atasan') ?></label>
-            <input type="text" class="form-control" name="id_atasan" id="id_atasan" placeholder="Id Atasan" value="<?php echo $id_atasan; ?>" />
+            <label for="int">Atasan <?php echo form_error('id_atasan') ?></label>
+            <?php echo cmb_dinamis('id_atasan','user','username','id_user',$id_user); ?>
         </div>
 	    <input type="hidden" name="id_user" value="<?php echo $id_user; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

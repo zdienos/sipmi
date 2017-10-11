@@ -15,7 +15,7 @@
 		<?php echo anchor(site_url('user/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div></div>
         </div>
-        <table class="table table-bordered table-striped" id="mytable">
+        <table class="table table-bordered table-striped table-condensed" style="font-size:11px" id="mytable">
             <thead>
                 <tr>
                     <th width="80px">No</th>

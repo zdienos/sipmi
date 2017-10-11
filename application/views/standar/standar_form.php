@@ -14,6 +14,10 @@
             <label for="nama_standar">Nama Standar <?php echo form_error('nama_standar') ?></label>
             <textarea class="form-control" rows="3" name="nama_standar" id="nama_standar" placeholder="Nama Standar"><?php echo $nama_standar; ?></textarea>
         </div>
+	    <div class="form-group">
+            <label for="int">Urutan <?php echo form_error('urutan') ?></label>
+            <input type="text" class="form-control" name="urutan" id="urutan" placeholder="Urutan" value="<?php echo $urutan; ?>" />
+        </div>
 	    <input type="hidden" name="id_standar" value="<?php echo $id_standar; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('standar') ?>" class="btn btn-default">Cancel</a>

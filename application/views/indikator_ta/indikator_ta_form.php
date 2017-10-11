@@ -9,30 +9,34 @@
                 </div>
             </div>
         </div>
-        <form action="<?php echo $action; ?>" method="post">
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 	    <div class="form-group">
-            <label for="int">Id Ta <?php echo form_error('id_ta') ?></label>
-            <input type="text" class="form-control" name="id_ta" id="id_ta" placeholder="Id Ta" value="<?php echo $id_ta; ?>" />
+            <label for="int">Ta <?php echo form_error('id_ta') ?></label>
+            <?php echo cmb_dinamis('id_ta','ta','nama_ta','id_ta'); ?>
         </div>
 	    <div class="form-group">
-            <label for="int">Id Indikator <?php echo form_error('id_indikator') ?></label>
-            <input type="text" class="form-control" name="id_indikator" id="id_indikator" placeholder="Id Indikator" value="<?php echo $id_indikator; ?>" />
+            <label for="int">Indikator <?php echo form_error('id_indikator') ?></label>
+            <?php echo cmb_dinamis('id_indikator','indikator','nama','id_indikator'); ?>
         </div>
 	    <div class="form-group">
             <label for="date">Tgl Isi <?php echo form_error('tgl_isi') ?></label>
-            <input type="text" class="form-control" name="tgl_isi" id="tgl_isi" placeholder="Tgl Isi" value="<?php echo $tgl_isi; ?>" />
+            <input type="date" class="form-control" name="tgl_isi" id="tgl_isi" readonly placeholder="Tgl Isi" value="<?php if ($tgl_isi=="") {echo date("Y-m-d");}else{echo $tgl_isi;} ?>" />
         </div>
 	    <div class="form-group">
-            <label for="date">Tgl Update <?php echo form_error('tgl_update') ?></label>
-            <input type="text" class="form-control" name="tgl_update" id="tgl_update" placeholder="Tgl Update" value="<?php echo $tgl_update; ?>" />
+            <!-- <label for="date">Tgl Update <?php echo form_error('tgl_update') ?></label> -->
+            <input type="hidden" class="form-control" name="tgl_update" id="tgl_update" placeholder="Tgl Update" value="<?php echo date("Y-m-d"); ?>" />
         </div>
 	    <div class="form-group">
             <label for="varchar">File <?php echo form_error('file') ?></label>
-            <input type="text" class="form-control" name="file" id="file" placeholder="File" value="<?php echo $file; ?>" />
+            <input type="file" class="form-control" name="file" id="file" placeholder="File" value="<?php echo $file; ?>" />
         </div>
 	    <div class="form-group">
             <label for="int">Nilai <?php echo form_error('nilai') ?></label>
-            <input type="text" class="form-control" name="nilai" id="nilai" placeholder="Nilai" value="<?php echo $nilai; ?>" />
+            <select class="form-control" name="nilai" id="nilai" placeholder="Nilai">
+                <option value="2" <?php if ($nilai==2) {echo "selected"; } ?>>2</option>
+                <option value="3" <?php if ($nilai==3) {echo "selected"; } ?>>3</option>
+                <option value="4" <?php if ($nilai==4) {echo "selected"; } ?>>4</option>
+            </select>
         </div>
 	    <div class="form-group">
             <label for="varchar">Status <?php echo form_error('status') ?></label>

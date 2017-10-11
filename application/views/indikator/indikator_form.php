@@ -11,8 +11,8 @@
         </div>
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
-            <label for="int">Id Standar <?php echo form_error('id_standar') ?></label>
-            <input type="text" class="form-control" name="id_standar" id="id_standar" placeholder="Id Standar" value="<?php echo $id_standar; ?>" />
+            <label for="int">Standar <?php echo form_error('id_standar') ?></label>
+             <?php echo cmb_dinamis('id_standar','standar','nama_standar','id_standar'); ?>
         </div>
 	    <div class="form-group">
             <label for="varchar">Nama <?php echo form_error('nama') ?></label>
@@ -32,7 +32,7 @@
         </div>
 	    <div class="form-group">
             <label for="date">Tgl Mulai <?php echo form_error('tgl_mulai') ?></label>
-            <input type="text" class="form-control" name="tgl_mulai" id="tgl_mulai" placeholder="Tgl Mulai" value="<?php echo $tgl_mulai; ?>" />
+            <input type="date" class="form-control" name="tgl_mulai" id="tgl_mulai" placeholder="Tgl Mulai" value="<?php echo $tgl_mulai; ?>" />
         </div>
 	    <input type="hidden" name="id_indikator" value="<?php echo $id_indikator; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

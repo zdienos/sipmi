@@ -45,7 +45,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<?php echo site_url('home'); ?>">Sismtem Penjaminan Mutu Internal</a>
+					<a class="navbar-brand" href="<?php echo site_url('home'); ?>">Sistem Penjaminan Mutu Internal</a>
 				</div>
 				<!-- /.navbar-header -->
 

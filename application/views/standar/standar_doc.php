@@ -21,6 +21,7 @@
             <tr>
                 <th>No</th>
 		<th>Nama Standar</th>
+		<th>Urutan</th>
 		
             </tr><?php
             foreach ($standar_data as $standar)
@@ -28,7 +29,8 @@
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>
-		      <td><?php echo $standar->nama_standar ?></td>	
+		      <td><?php echo $standar->nama_standar ?></td>
+		      <td><?php echo $standar->urutan ?></td>	
                 </tr>
                 <?php
             }

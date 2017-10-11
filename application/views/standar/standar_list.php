@@ -20,6 +20,7 @@
                 <tr>
                     <th width="80px">No</th>
 		    <th>Nama Standar</th>
+		    <th>Urutan</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -60,7 +61,7 @@
                         {
                             "data": "id_standar",
                             "orderable": false
-                        },{"data": "nama_standar"},
+                        },{"data": "nama_standar"},{"data": "urutan"},
                         {
                             "data" : "action",
                             "orderable": false,

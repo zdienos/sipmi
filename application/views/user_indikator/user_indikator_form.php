@@ -11,12 +11,12 @@
         </div>
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
-            <label for="int">Id User <?php echo form_error('id_user') ?></label>
-            <input type="text" class="form-control" name="id_user" id="id_user" placeholder="Id User" value="<?php echo $id_user; ?>" />
+            <label for="int">User <?php echo form_error('id_user') ?></label>
+             <?php echo cmb_dinamis('id_user','user','username','id_user',$id_user); ?>
         </div>
 	    <div class="form-group">
             <label for="int">Id Indikator <?php echo form_error('id_indikator') ?></label>
-            <input type="text" class="form-control" name="id_indikator" id="id_indikator" placeholder="Id Indikator" value="<?php echo $id_indikator; ?>" />
+             <?php echo cmb_dinamis('id_indikator','indikator','nama','id_indikator'); ?>
         </div>
 	    <input type="hidden" name="id_user_indikator" value="<?php echo $id_user_indikator; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

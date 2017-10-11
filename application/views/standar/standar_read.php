@@ -11,5 +11,6 @@
         </div>
         <table class="table">
 	    <tr><td>Nama Standar</td><td><?php echo $nama_standar; ?></td></tr>
+	    <tr><td>Urutan</td><td><?php echo $urutan; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('standar') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table><?php $this->load->view('templates/footer');?>
