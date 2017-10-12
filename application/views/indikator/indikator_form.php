@@ -12,7 +12,7 @@
                 <form action="<?php echo $action; ?>" method="post">
                  <div class="form-group">
                     <label for="int">Standar <?php echo form_error('id_standar') ?></label>
-                    <?php echo cmb_dinamis('id_standar','standar','nama_standar','id_standar'); ?>
+                    <?php echo cmb_dinamis('id_standar','standar','nama_standar','id_standar',$id_standar); ?>
                 </div>
                 <div class="form-group">
                     <label for="int">Indikator</label>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="int">Level <?php echo form_error('level') ?></label>
-                    <input type="text" class="form-control" name="level" id="level" placeholder="Level" value="<?php echo $level; ?>" />
+                    <?php echo cmb_dinamis('level','indikator','nama','id_indikator'); ?>
                 </div>
                 <div class="form-group">
                     <label for="int">Jangka Waktu <?php echo form_error('jangka_waktu') ?></label>

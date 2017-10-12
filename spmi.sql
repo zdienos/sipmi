@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2017 at 11:43 AM
+-- Generation Time: Oct 12, 2017 at 12:15 PM
 -- Server version: 10.1.24-MariaDB
 -- PHP Version: 7.1.6
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `indikator` (
   `id_indikator` int(11) NOT NULL,
   `id_standar` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `nama` text NOT NULL,
   `bobot` double NOT NULL,
   `level` int(11) NOT NULL,
   `jangka_waktu` varchar(11) NOT NULL,
@@ -43,7 +43,8 @@ CREATE TABLE `indikator` (
 --
 
 INSERT INTO `indikator` (`id_indikator`, `id_standar`, `nama`, `bobot`, `level`, `jangka_waktu`, `tgl_mulai`) VALUES
-(1, 1, 'Dosen Tetap : Kecukupan dan ...', 6.91, 1, '1 Tahun', '2017-10-11');
+(1, 1, 'Dosen Tetap : Kecukupan dan ...', 6.91, 1, '1 Tahun', '2017-10-11'),
+(2, 1, 'Dosen Tetap : Kecukupan dan kualifikasi dosen tetap, jumlah penggantian, perekrutan serta pengembangan dosen tetap, serta upaya unit pengelola program studi diploma dalam mengembangkan tenaga dosen tetap.', 0, 0, '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,8 @@ CREATE TABLE `indikator_ta` (
 --
 
 INSERT INTO `indikator_ta` (`id_indikator_ta`, `id_ta`, `id_indikator`, `tgl_isi`, `tgl_update`, `file`, `nilai`, `status`, `isian`) VALUES
-(4, 1, 1, '2017-10-11', '2017-10-11', 'Modul_1_Rangkaian_Digital_-_YAS1.docx', 3, 'Aktif', 'isian');
+(7, 1, 1, '2017-10-12', '2017-10-12', '1_1507780346875.docx', 4, 'Belum Lengkap', 'Isian'),
+(8, 1, 1, '2017-10-12', '2017-10-12', '1_1507781239121.docx', 3, 'Belum Lengkap', 'Isian');
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,7 @@ CREATE TABLE `level` (
 --
 
 INSERT INTO `level` (`id_level`, `nama_level`) VALUES
-(1, 'Kepala Program Studi'),
+(1, 'Ketua Program Studi'),
 (2, 'Kepala Unit'),
 (3, 'Direktorat'),
 (4, 'UPP');
@@ -118,15 +120,17 @@ INSERT INTO `standar` (`id_standar`, `nama_standar`, `urutan`) VALUES
 
 CREATE TABLE `ta` (
   `id_ta` int(11) NOT NULL,
-  `nama_ta` varchar(255) NOT NULL
+  `nama_ta` varchar(255) NOT NULL,
+  `awal` varchar(255) NOT NULL,
+  `akhir` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ta`
 --
 
-INSERT INTO `ta` (`id_ta`, `nama_ta`) VALUES
-(1, '2015/2016');
+INSERT INTO `ta` (`id_ta`, `nama_ta`, `awal`, `akhir`) VALUES
+(1, '2015/2016', '2015', '2016');
 
 -- --------------------------------------------------------
 
@@ -230,12 +234,12 @@ ALTER TABLE `user_indikator`
 -- AUTO_INCREMENT for table `indikator`
 --
 ALTER TABLE `indikator`
-  MODIFY `id_indikator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_indikator` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `indikator_ta`
 --
 ALTER TABLE `indikator_ta`
-  MODIFY `id_indikator_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_indikator_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `level`
 --
