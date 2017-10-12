@@ -15,12 +15,12 @@
 		<?php echo anchor(site_url('level/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div></div>
         </div>
-        <table class="table table-bordered table-striped" id="mytable">
+        <table class="table table-bordered table-striped  table-condensed" style="font-size:11px" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
+                    <th>No</th>
 		    <th>Nama Level</th>
-		    <th width="200px">Action</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    

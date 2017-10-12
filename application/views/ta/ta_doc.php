@@ -21,6 +21,8 @@
             <tr>
                 <th>No</th>
 		<th>Nama Ta</th>
+		<th>Awal</th>
+		<th>Akhir</th>
 		
             </tr><?php
             foreach ($ta_data as $ta)
@@ -28,7 +30,9 @@
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>
-		      <td><?php echo $ta->nama_ta ?></td>	
+		      <td><?php echo $ta->nama_ta ?></td>
+		      <td><?php echo $ta->awal ?></td>
+		      <td><?php echo $ta->akhir ?></td>	
                 </tr>
                 <?php
             }

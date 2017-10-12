@@ -18,12 +18,12 @@
         <table class="table table-bordered table-striped table-condensed" style="font-size:11px" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
+                    <th>No</th>
 		    <th>Id Level</th>
 		    <th>Username</th>
 		    <th>Password</th>
 		    <th>Id Atasan</th>
-		    <th width="200px">Action</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    

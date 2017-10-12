@@ -9,6 +9,11 @@
         <script src="<?php echo base_url('assets/datatables/dataTables.bootstrap.js') ?>"></script>
         <script src="<?php echo base_url('assets/vendor/metisMenu/metisMenu.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/sb-admin-2.js') ?>"></script>
-        
+        <!-- Latest compiled and minified JavaScript -->
+		<script src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
+
+		<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+		<script src="<?php echo base_url('assets/js/i18n/defaults-*.min.js'); ?>"></script>
+
     </body>
 </html>

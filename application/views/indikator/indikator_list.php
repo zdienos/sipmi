@@ -15,17 +15,17 @@
 		<?php echo anchor(site_url('indikator/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div></div>
         </div>
-        <table class="table table-bordered table-striped" id="mytable">
+        <table class="table table-bordered table-striped table-condensed" style="font-size:11px" id="mytable">
             <thead>
                 <tr>
-                    <th width="80px">No</th>
+                    <th>No</th>
 		    <th>Id Standar</th>
 		    <th>Nama</th>
 		    <th>Bobot</th>
 		    <th>Level</th>
 		    <th>Jangka Waktu</th>
 		    <th>Tgl Mulai</th>
-		    <th width="200px">Action</th>
+		    <th>Action</th>
                 </tr>
             </thead>
 	    
