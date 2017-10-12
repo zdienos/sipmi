@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-		    <th>Id Level</th>
+		    <th>Level</th>
 		    <th>Username</th>
 		    <th>Password</th>
 		    <th>Id Atasan</th>
@@ -63,7 +63,7 @@
                         {
                             "data": "id_user",
                             "orderable": false
-                        },{"data": "id_level"},{"data": "username"},{"data": "password"},{"data": "id_atasan"},
+                        },{"data": "nama_level"},{"data": "username"},{"data": "password"},{"data": "id_atasan"},
                         {
                             "data" : "action",
                             "orderable": false,

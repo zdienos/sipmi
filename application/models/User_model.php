@@ -17,10 +17,10 @@ class User_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_user,id_level,username,password,id_atasan');
+        $this->datatables->select('id_user,nama_level,username,password,id_atasan');
         $this->datatables->from('user');
         //add this line for join
-        //$this->datatables->join('table2', 'user.field = table2.field');
+        $this->datatables->join('level', 'user.id_level = level.id_level');
         $this->datatables->add_column('action', anchor(site_url('user/read/$1'),'Read')." | ".anchor(site_url('user/update/$1'),'Update')." | ".anchor(site_url('user/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_user');
         return $this->datatables->generate();
     }

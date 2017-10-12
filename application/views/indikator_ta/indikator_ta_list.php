@@ -19,8 +19,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-		    <th>Id Ta</th>
-		    <th>Id Indikator</th>
+		    <th>Tahun Ajaran</th>
+		    <th>Indikator</th>
 		    <th>Tgl Isi</th>
 		    <th>Tgl Update</th>
 		    <th>File</th>
@@ -67,7 +67,7 @@
                         {
                             "data": "id_indikator_ta",
                             "orderable": false
-                        },{"data": "id_ta"},{"data": "id_indikator"},{"data": "tgl_isi"},{"data": "tgl_update"},{"data": "file"},{"data": "nilai"},{"data": "status"},{"data": "isian"},
+                        },{"data": "nama_ta"},{"data": "nama_indikator"},{"data": "tgl_isi"},{"data": "tgl_update"},{"data": "file"},{"data": "nilai"},{"data": "status"},{"data": "isian"},
                         {
                             "data" : "action",
                             "orderable": false,

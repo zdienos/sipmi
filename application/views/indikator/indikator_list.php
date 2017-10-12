@@ -19,7 +19,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-		    <th>Id Standar</th>
+		    <th>Standar</th>
 		    <th>Nama</th>
 		    <th>Bobot</th>
 		    <th>Level</th>
@@ -65,7 +65,7 @@
                         {
                             "data": "id_indikator",
                             "orderable": false
-                        },{"data": "id_standar"},{"data": "nama"},{"data": "bobot"},{"data": "level"},{"data": "jangka_waktu"},{"data": "tgl_mulai"},
+                        },{"data": "nama_standar"},{"data": "nama"},{"data": "bobot"},{"data": "level"},{"data": "jangka_waktu"},{"data": "tgl_mulai"},
                         {
                             "data" : "action",
                             "orderable": false,

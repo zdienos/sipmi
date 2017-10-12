@@ -148,12 +148,7 @@ class Indikator extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('id_standar', 'id standar', 'trim|required');
-	$this->form_validation->set_rules('nama', 'nama', 'trim|required');
-	$this->form_validation->set_rules('bobot', 'bobot', 'trim|required');
-	$this->form_validation->set_rules('level', 'level', 'trim|required');
-	$this->form_validation->set_rules('jangka_waktu', 'jangka waktu', 'trim|required');
-	$this->form_validation->set_rules('tgl_mulai', 'tgl mulai', 'trim|required');
+	
 
 	$this->form_validation->set_rules('id_indikator', 'id_indikator', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

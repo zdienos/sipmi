@@ -17,10 +17,10 @@ class Indikator_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_indikator,id_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
+        $this->datatables->select('id_indikator,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
         $this->datatables->from('indikator');
         //add this line for join
-        //$this->datatables->join('table2', 'indikator.field = table2.field');
+        $this->datatables->join('standar', 'indikator.id_standar = standar.id_standar');
         $this->datatables->add_column('action', anchor(site_url('indikator/read/$1'),'Read')." | ".anchor(site_url('indikator/update/$1'),'Update')." | ".anchor(site_url('indikator/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator');
         return $this->datatables->generate();
     }

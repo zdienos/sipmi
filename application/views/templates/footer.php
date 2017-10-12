@@ -12,8 +12,5 @@
         <!-- Latest compiled and minified JavaScript -->
 		<script src="<?php echo base_url('assets/js/bootstrap-select.min.js'); ?>"></script>
 
-		<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-		<script src="<?php echo base_url('assets/js/i18n/defaults-*.min.js'); ?>"></script>
-
     </body>
 </html>

@@ -17,10 +17,11 @@ class User_indikator_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_user_indikator,id_user,id_indikator');
+        $this->datatables->select('id_user_indikator,username,indikator.nama as nama_indikator');
         $this->datatables->from('user_indikator');
         //add this line for join
-        //$this->datatables->join('table2', 'user_indikator.field = table2.field');
+        $this->datatables->join('indikator', 'user_indikator.id_indikator = indikator.id_indikator');
+        $this->datatables->join('user', 'user_indikator.id_user = user.id_user');
         $this->datatables->add_column('action', anchor(site_url('user_indikator/read/$1'),'Read')." | ".anchor(site_url('user_indikator/update/$1'),'Update')." | ".anchor(site_url('user_indikator/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_user_indikator');
         return $this->datatables->generate();
     }

@@ -19,8 +19,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-		    <th>Id User</th>
-		    <th>Id Indikator</th>
+		    <th>User</th>
+		    <th>Indikator</th>
 		    <th>Action</th>
                 </tr>
             </thead>
@@ -61,7 +61,7 @@
                         {
                             "data": "id_user_indikator",
                             "orderable": false
-                        },{"data": "id_user"},{"data": "id_indikator"},
+                        },{"data": "username"},{"data": "nama_indikator"},
                         {
                             "data" : "action",
                             "orderable": false,
