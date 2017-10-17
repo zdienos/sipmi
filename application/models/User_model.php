@@ -28,6 +28,16 @@ class User_model extends CI_Model
     // get all
     function get_all()
     {
+       
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get user and level
+    function get_user_level($level)
+    {
+        $this->db->join('level','level.id_level=user.id_level');
+        $this->db->where('nama_level',$level);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }

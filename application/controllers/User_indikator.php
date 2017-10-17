@@ -10,6 +10,8 @@ class User_indikator extends CI_Controller
         parent::__construct();
 
         $this->load->model('User_indikator_model');
+        $this->load->model('User_model');
+        $this->load->model('Level_model');
         $this->load->library('form_validation');
 
         if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
@@ -49,6 +51,7 @@ class User_indikator extends CI_Controller
     {
         $data = array(
             'button' => 'Create',
+            'data_level' => $this->Level_model->get_all(),
             'action' => site_url('user_indikator/create_action'),
 	    'id_user_indikator' => set_value('id_user_indikator'),
 	    'id_user' => set_value('id_user'),
@@ -65,7 +68,7 @@ class User_indikator extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
+		'id_user' => implode(",",$this->input->post('id_user',TRUE)),
 		'id_indikator' => $this->input->post('id_indikator',TRUE),
 	    );
 
@@ -128,7 +131,7 @@ class User_indikator extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
+	//$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
 	$this->form_validation->set_rules('id_indikator', 'id indikator', 'trim|required');
 
 	$this->form_validation->set_rules('id_user_indikator', 'id_user_indikator', 'trim');
