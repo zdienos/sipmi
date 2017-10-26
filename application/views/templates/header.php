@@ -13,6 +13,7 @@
 		<link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-select.min.css'); ?>">
+		  <script src="<?php echo base_url('assets/ckeditor/ckeditor.js'); ?>"></script>
 		<style>
             .dataTables_wrapper {
                 min-height: 500px

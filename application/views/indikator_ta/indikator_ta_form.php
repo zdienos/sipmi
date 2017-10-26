@@ -51,7 +51,15 @@
       </div>
       <div class="form-group">
         <label for="isian">Isian <?php echo form_error('isian') ?></label>
-        <textarea class="form-control" rows="3" name="isian" id="isian" placeholder="Isian"><?php echo $isian; ?></textarea>
+        <textarea  name="isian" id="isian"  rows="10" cols="80">
+              
+            </textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'isian' );
+            </script>
+       <!--  <textarea class="form-control" rows="3" name="isian" id="isian" placeholder="Isian"><?php echo $isian; ?></textarea> -->
     </div>
     <input type="hidden" name="id_indikator_ta" value="<?php echo $id_indikator_ta; ?>" /> 
     <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

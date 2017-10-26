@@ -18,7 +18,7 @@ class User_indikator extends CI_Controller
         {
             redirect('/');
         }        
-	$this->load->library('datatables');
+        $this->load->library('datatables');
     }
 
     public function index()
@@ -36,10 +36,10 @@ class User_indikator extends CI_Controller
         $row = $this->User_indikator_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id_user_indikator' => $row->id_user_indikator,
-		'id_user' => $row->id_user,
-		'id_indikator' => $row->id_indikator,
-	    );
+              'id_user_indikator' => $row->id_user_indikator,
+              'id_user' => $row->id_user,
+              'id_indikator' => $row->id_indikator,
+              );
             $this->load->view('user_indikator/user_indikator_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -53,10 +53,10 @@ class User_indikator extends CI_Controller
             'button' => 'Create',
             'data_level' => $this->Level_model->get_all(),
             'action' => site_url('user_indikator/create_action'),
-	    'id_user_indikator' => set_value('id_user_indikator'),
-	    'id_user' => set_value('id_user'),
-	    'id_indikator' => set_value('id_indikator'),
-	);
+            'id_user_indikator' => set_value('id_user_indikator'),
+            'id_user' => set_value('id_user'),
+            'id_indikator' => set_value('id_indikator'),
+            );
         $this->load->view('user_indikator/user_indikator_form', $data);
     }
     
@@ -67,12 +67,16 @@ class User_indikator extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $data = array(
-		'id_user' => implode(",",$this->input->post('id_user',TRUE)),
-		'id_indikator' => $this->input->post('id_indikator',TRUE),
-	    );
+            $data_user=$this->input->post('id_user');
+            for ($i=0; $i < count($data_user); $i++) { 
+                $data = array(
+                    'id_user' => $data_user[$i],
+                    'id_indikator' => $this->input->post('id_indikator',TRUE),
+                    );
 
-            $this->User_indikator_model->insert($data);
+                $this->User_indikator_model->insert($data);
+            }
+            
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('user_indikator'));
         }
@@ -86,10 +90,10 @@ class User_indikator extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('user_indikator/update_action'),
-		'id_user_indikator' => set_value('id_user_indikator', $row->id_user_indikator),
-		'id_user' => set_value('id_user', $row->id_user),
-		'id_indikator' => set_value('id_indikator', $row->id_indikator),
-	    );
+                'id_user_indikator' => set_value('id_user_indikator', $row->id_user_indikator),
+                'id_user' => set_value('id_user', $row->id_user),
+                'id_indikator' => set_value('id_indikator', $row->id_indikator),
+                );
             $this->load->view('user_indikator/user_indikator_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -105,9 +109,9 @@ class User_indikator extends CI_Controller
             $this->update($this->input->post('id_user_indikator', TRUE));
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'id_indikator' => $this->input->post('id_indikator',TRUE),
-	    );
+              'id_user' => $this->input->post('id_user',TRUE),
+              'id_indikator' => $this->input->post('id_indikator',TRUE),
+              );
 
             $this->User_indikator_model->update($this->input->post('id_user_indikator', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -132,65 +136,65 @@ class User_indikator extends CI_Controller
     public function _rules() 
     {
 	//$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
-	$this->form_validation->set_rules('id_indikator', 'id indikator', 'trim|required');
+       $this->form_validation->set_rules('id_indikator', 'id indikator', 'trim|required');
 
-	$this->form_validation->set_rules('id_user_indikator', 'id_user_indikator', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-    }
+       $this->form_validation->set_rules('id_user_indikator', 'id_user_indikator', 'trim');
+       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+   }
 
-    public function excel()
-    {
-        $this->load->helper('exportexcel');
-        $namaFile = "user_indikator.xls";
-        $judul = "user_indikator";
-        $tablehead = 0;
-        $tablebody = 1;
-        $nourut = 1;
+   public function excel()
+   {
+    $this->load->helper('exportexcel');
+    $namaFile = "user_indikator.xls";
+    $judul = "user_indikator";
+    $tablehead = 0;
+    $tablebody = 1;
+    $nourut = 1;
         //penulisan header
-        header("Pragma: public");
-        header("Expires: 0");
-        header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
-        header("Content-Type: application/force-download");
-        header("Content-Type: application/octet-stream");
-        header("Content-Type: application/download");
-        header("Content-Disposition: attachment;filename=" . $namaFile . "");
-        header("Content-Transfer-Encoding: binary ");
+    header("Pragma: public");
+    header("Expires: 0");
+    header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+    header("Content-Type: application/force-download");
+    header("Content-Type: application/octet-stream");
+    header("Content-Type: application/download");
+    header("Content-Disposition: attachment;filename=" . $namaFile . "");
+    header("Content-Transfer-Encoding: binary ");
 
-        xlsBOF();
+    xlsBOF();
 
-        $kolomhead = 0;
-        xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Id User");
-	xlsWriteLabel($tablehead, $kolomhead++, "Id Indikator");
+    $kolomhead = 0;
+    xlsWriteLabel($tablehead, $kolomhead++, "No");
+    xlsWriteLabel($tablehead, $kolomhead++, "Id User");
+    xlsWriteLabel($tablehead, $kolomhead++, "Id Indikator");
 
-	foreach ($this->User_indikator_model->get_all() as $data) {
-            $kolombody = 0;
+    foreach ($this->User_indikator_model->get_all() as $data) {
+        $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
-            xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->id_user);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->id_indikator);
+        xlsWriteNumber($tablebody, $kolombody++, $nourut);
+        xlsWriteNumber($tablebody, $kolombody++, $data->id_user);
+        xlsWriteNumber($tablebody, $kolombody++, $data->id_indikator);
 
-	    $tablebody++;
-            $nourut++;
-        }
-
-        xlsEOF();
-        exit();
+        $tablebody++;
+        $nourut++;
     }
 
-    public function word()
-    {
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment;Filename=user_indikator.doc");
+    xlsEOF();
+    exit();
+}
 
-        $data = array(
-            'user_indikator_data' => $this->User_indikator_model->get_all(),
-            'start' => 0
+public function word()
+{
+    header("Content-type: application/vnd.ms-word");
+    header("Content-Disposition: attachment;Filename=user_indikator.doc");
+
+    $data = array(
+        'user_indikator_data' => $this->User_indikator_model->get_all(),
+        'start' => 0
         );
-        
-        $this->load->view('user_indikator/user_indikator_doc',$data);
-    }
+    
+    $this->load->view('user_indikator/user_indikator_doc',$data);
+}
 
 }
 
