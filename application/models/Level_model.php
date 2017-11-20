@@ -21,7 +21,7 @@ class Level_model extends CI_Model
         $this->datatables->from('level');
         //add this line for join
         //$this->datatables->join('table2', 'level.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('indikator/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator');
+        $this->datatables->add_column('action', anchor(site_url('level/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('level/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('level/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_level');
         return $this->datatables->generate();
     }
 

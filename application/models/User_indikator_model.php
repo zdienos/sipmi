@@ -22,7 +22,7 @@ class User_indikator_model extends CI_Model
         //add this line for join
         $this->datatables->join('indikator', 'user_indikator.id_indikator = indikator.id_indikator');
         $this->datatables->join('user', 'user_indikator.id_user = user.id_user');
-        $this->datatables->add_column('action', anchor(site_url('indikator/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator');
+        $this->datatables->add_column('action', anchor(site_url('user_indikator/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('user_indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('user_indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_user_indikator');
         return $this->datatables->generate();
     }
 

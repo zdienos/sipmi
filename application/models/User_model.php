@@ -21,7 +21,7 @@ class User_model extends CI_Model
         $this->datatables->from('user');
         //add this line for join
         $this->datatables->join('level', 'user.id_level = level.id_level');
-        $this->datatables->add_column('action', anchor(site_url('indikator/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator');
+        $this->datatables->add_column('action', anchor(site_url('user/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('user/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('user/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_user');
         return $this->datatables->generate();
     }
 
