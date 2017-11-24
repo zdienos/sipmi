@@ -1,7 +1,7 @@
 <?php $this->load->view('templates/header');?>
         <div class="row" style="margin-bottom: 20px">
             <div class="col-md-4">
-                <h2>Indikator List</h2>
+                <h2>Daftar Indikator</h2>
             </div>
             <div class="col-md-4 text-center">
                 <div id="message">
@@ -10,9 +10,9 @@
             </div>
             <div class="col-md-4 text-right">
 				<div style="margin-top:20px;">
-                <?php echo anchor(site_url('indikator/create'), 'Create', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('indikator/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('indikator/word'), 'Word', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('indikator/create'), '<i class="fa fa-plus"></i> Tambah Indikator', 'class="btn btn-primary"'); ?>
+		<?php echo anchor(site_url('indikator/excel'), 'Excel', 'class="btn btn-default"'); ?>
+		<?php echo anchor(site_url('indikator/word'), 'Word', 'class="btn btn-default"'); ?>
 	    </div></div>
         </div>
         <table class="table table-bordered table-striped table-condensed" style="font-size:11px" id="mytable">

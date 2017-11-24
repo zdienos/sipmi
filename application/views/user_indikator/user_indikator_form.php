@@ -23,14 +23,13 @@
               <?php
             } ?>
  
-    
 </select>
 
              <?php //echo cmb_dinamis('id_user','user','username','id_user',$id_user); ?>
         </div>
 	    <div class="form-group">
             <label for="int">Id Indikator <?php echo form_error('id_indikator') ?></label>
-             <?php echo cmb_dinamis('id_indikator','indikator','nama','id_indikator'); ?>
+             <?php echo cmb_dinamis_user_indikator('id_indikator','indikator','nama','id_indikator'); ?>
         </div>
 	    <input type="hidden" name="id_user_indikator" value="<?php echo $id_user_indikator; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

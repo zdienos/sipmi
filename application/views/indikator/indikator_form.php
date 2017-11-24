@@ -15,6 +15,13 @@
                     <?php echo cmb_dinamis('id_standar','standar','nama_standar','id_standar',$id_standar); ?>
                 </div>
                 <div class="form-group">
+                    <label for="int">Keterangan <?php form_error('nilai') ?></label><br>
+                    <label class="radio-inline">
+                    <input type="radio" name="keterangan" id="keterangan" value="<?php echo $keterangan[0]; ?>" <?php if (isset($keterangan_data)) {if($keterangan_data==1){echo "checked"; }} ?>>Bab</label>
+                <label class="radio-inline">
+                <input type="radio" name="keterangan" id="keterangan" value="<?php echo $keterangan[1]; ?>" <?php if (isset($keterangan_data)) {if($keterangan_data==2){echo "checked"; }} ?>>Sub Bab</label>
+                </div>
+                <div class="form-group">
                     <label for="int">Indikator</label>
                     <select id="indikator_select" class="form-control">
                     <option value="">-- Jenis --</option>
@@ -23,9 +30,14 @@
                   </select>
               </div>
               <div class="form-group">
-                    <label for="varchar">Nama <?php echo form_error('nama') ?></label>
-                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" value="<?php echo $nama; ?>" />
-                </div>
+              <label for="isian">Deskriptor <?php echo form_error('nama') ?></label>
+              <textarea  name="nama" id="nama"  rows="10" cols="80">
+                    <?php if(isset($nama)){echo $nama;} ?>
+                  </textarea>
+                  <script>
+                      CKEDITOR.replace( 'nama' );
+                  </script>
+          </div>
                 <div class="hidden" id="indikator">
                  
                 <div class="form-group">

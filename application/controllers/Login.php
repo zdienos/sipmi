@@ -7,7 +7,8 @@ class Login extends CI_Controller
 {
     function __construct()
     {
-        parent::__construct();
+		parent::__construct();
+		$this->load->model('User_model');
     }
 
     public function index()
@@ -23,12 +24,13 @@ class Login extends CI_Controller
 		}
 		else
 		{
-			if(
-				strtolower($this->input->post('username')) == LOGIN_USERNAME &&
-				$this->input->post('password')  == LOGIN_PASSWORD
-			)
+			$username	= $this->input->post('username');
+			$password	= $this->input->post('password');
+			$cek_login	= $this->User_model->get_by_login($username,$password);
+			if(!empty($cek_login))
 			{
 				$this->session->set_userdata('logined', true);
+				$this->session->set_userdata('data', $cek_login);
 				
 				redirect("home");
 			}

@@ -28,7 +28,12 @@ class User_indikator extends CI_Controller
     
     public function json() {
         header('Content-Type: application/json');
-        echo $this->User_indikator_model->json();
+        if($this->session->userdata('data')->nama_level!="Admin"){
+            echo $this->User_indikator_model->json_ka($this->session->userdata('data')->id_user);
+        }else{
+            echo $this->User_indikator_model->json();
+        }
+        
     }
 
     public function read($id) 

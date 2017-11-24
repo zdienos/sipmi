@@ -48,6 +48,15 @@ class User_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data by user login
+    function get_by_login($username,$password)
+    {
+        $this->db->where('username', $username);
+        $this->db->where('password', md5($password));
+        $this->db->join('level','level.id_level=user.id_level');
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

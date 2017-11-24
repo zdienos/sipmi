@@ -54,7 +54,7 @@
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							<i class="fa fa-user fa-fw" style="color:white;"></i> <i class="fa fa-caret-down" style="color:white;"></i>
+							<i style="color:white">Selamat Datang , <?php echo $this->session->userdata('data')->username; ?></i> <i class="fa fa-user fa-fw" style="color:white;"></i> <i class="fa fa-caret-down" style="color:white;"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-user">
 							<li><a href="<?php echo site_url('login/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -69,7 +69,7 @@
 				<div class="navbar-default sidebar" role="navigation" >
 					<div class="sidebar-nav navbar-collapse">
 						<ul class="nav" id="side-menu">
-							<?php echo generate_sidemenu();?>
+							<?php if($this->session->userdata('data')->nama_level!="Admin"){echo generate_sidemenu_ka();}else{echo generate_sidemenu();}?>
 						</ul>
 					</div>
 					<!-- /.sidebar-collapse -->

@@ -71,7 +71,7 @@ class User extends CI_Controller
             $data = array(
 		'id_level' => $this->input->post('id_level',TRUE),
 		'username' => $this->input->post('username',TRUE),
-		'password' => $this->input->post('password',TRUE),
+		'password' => md5($this->input->post('password',TRUE)),
 		'id_atasan' => $this->input->post('id_atasan',TRUE),
 	    );
 
@@ -109,12 +109,23 @@ class User extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_user', TRUE));
         } else {
-            $data = array(
-		'id_level' => $this->input->post('id_level',TRUE),
-		'username' => $this->input->post('username',TRUE),
-		'password' => $this->input->post('password',TRUE),
-		'id_atasan' => $this->input->post('id_atasan',TRUE),
-	    );
+            $row = $this->User_model->get_by_id($id);
+            if($this->input->post('password')==$row->password){
+                $data="";
+                $data = array(
+                    'id_level' => $this->input->post('id_level',TRUE),
+                    'username' => $this->input->post('username',TRUE),
+                    'id_atasan' => $this->input->post('id_atasan',TRUE),
+                    );
+            }else{
+                $data = array(
+                    'id_level' => $this->input->post('id_level',TRUE),
+                    'username' => $this->input->post('username',TRUE),
+                    'password' => md5($this->input->post('password',TRUE)),
+                    'id_atasan' => $this->input->post('id_atasan',TRUE),
+                    );
+            }
+            
 
             $this->User_model->update($this->input->post('id_user', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');

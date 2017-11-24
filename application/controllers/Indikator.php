@@ -61,6 +61,7 @@ class Indikator extends CI_Controller
 	    'level' => set_value('level'),
 	    'jangka_waktu' => set_value('jangka_waktu'),
 	    'tgl_mulai' => set_value('tgl_mulai'),
+	    'keterangan' => set_value('keterangan',array(1,2)),
 	);
         $this->load->view('indikator/indikator_form', $data);
     }
@@ -72,14 +73,28 @@ class Indikator extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+        if($this->input->post('keterangan')==1){
             $data = array(
-		'id_standar' => $this->input->post('id_standar',TRUE),
-		'nama' => $this->input->post('nama',TRUE),
-		'bobot' => $this->input->post('bobot',TRUE),
-		'level' => $this->input->post('level',TRUE),
-		'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
-		'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
-	    );
+                'id_standar' => $this->input->post('id_standar',TRUE),
+                'nama' => $this->input->post('nama',TRUE),
+                'bobot' => "$this->input->post('bobot',TRUE)",
+                'level' => 0,
+                'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
+                'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
+                'keterangan' => $this->input->post('keterangan',TRUE),
+                );
+        }else{
+            $data = array(
+                'id_standar' => $this->input->post('id_standar',TRUE),
+                'nama' => $this->input->post('nama',TRUE),
+                'bobot' => $this->input->post('bobot',TRUE),
+                'level' => $this->input->post('level',TRUE),
+                'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
+                'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
+                'keterangan' => $this->input->post('keterangan',TRUE),
+                );
+        }
+            
 
             $this->Indikator_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -102,6 +117,8 @@ class Indikator extends CI_Controller
 		'level' => set_value('level', $row->level),
 		'jangka_waktu' => set_value('jangka_waktu', $row->jangka_waktu),
 		'tgl_mulai' => set_value('tgl_mulai', $row->tgl_mulai),
+	    'keterangan' => set_value('keterangan',array(1,2)),
+	    'keterangan_data' => $row->keterangan,
 	    );
             $this->load->view('indikator/indikator_form', $data);
         } else {
@@ -123,7 +140,8 @@ class Indikator extends CI_Controller
 		'bobot' => $this->input->post('bobot',TRUE),
 		'level' => $this->input->post('level',TRUE),
 		'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
-		'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
+        'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
+        'keterangan' => $this->input->post('keterangan',TRUE),
 	    );
 
             $this->Indikator_model->update($this->input->post('id_indikator', TRUE), $data);

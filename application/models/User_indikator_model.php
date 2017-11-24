@@ -26,6 +26,19 @@ class User_indikator_model extends CI_Model
         return $this->datatables->generate();
     }
 
+    // datatables untuk kepala unit
+    function json_ka($id_user) {
+        $this->datatables->select('user_indikator.id_indikator,id_user_indikator,username,indikator.nama as nama_indikator');
+        $this->datatables->from('user_indikator');
+        //Filter
+        $this->datatables->where('user_indikator.id_user',$id_user);
+        //add this line for join
+        $this->datatables->join('indikator', 'user_indikator.id_indikator = indikator.id_indikator');
+        $this->datatables->join('user', 'user_indikator.id_user = user.id_user');
+        $this->datatables->add_column('action', anchor(site_url('user_indikator/update/$1'),'<i class="fa fa-plus"></i>','class="btn btn-primary"'), 'id_indikator');
+        return $this->datatables->generate();
+    }
+
     // get all
     function get_all()
     {

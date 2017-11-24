@@ -16,7 +16,12 @@
         </div>
         <div class="form-group">
             <label for="int">Indikator <?php echo form_error('id_indikator') ?></label>
-            <?php echo cmb_dinamis('id_indikator','indikator','nama','id_indikator'); ?>
+            
+            <?php if($this->session->userdata('data')->nama_level!="Admin"){
+                echo cmb_dinamis_user_indikator_ka($this->session->userdata('data')->id_user,'id_indikator','indikator','nama','id_indikator');
+        }else{;
+            echo cmb_dinamis_user_indikator('id_indikator','indikator','nama','id_indikator');
+        } ?>
         </div>
         <div class="form-group">
             <label for="date">Tgl Isi <?php echo form_error('tgl_isi') ?></label>

@@ -24,7 +24,7 @@
         </div>
 	    <div class="form-group">
             <label for="int">Atasan <?php echo form_error('id_atasan') ?></label>
-            <?php echo cmb_dinamis('id_atasan','user','username','id_user',$id_user); ?>
+            <?php echo cmb_dinamis('id_atasan','user','username','id_user',$id_atasan); ?>
         </div>
 	    <input type="hidden" name="id_user" value="<?php echo $id_user; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
