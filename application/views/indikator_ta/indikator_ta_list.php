@@ -10,7 +10,9 @@
             </div>
             <div class="col-md-4 text-right">
 				<div style="margin-top:20px;">
-                <?php echo anchor(site_url('indikator_ta/create'), 'Create', 'class="btn btn-primary"'); ?>
+                <?php if($this->session->userdata('data')->nama_level=="UPM"||$this->session->userdata('data')->nama_level=="Admin"){ 
+                    echo anchor(site_url('indikator_ta/create'), 'Create', 'class="btn btn-primary"'); 
+                }?>
 		<?php echo anchor(site_url('indikator_ta/excel'), 'Excel', 'class="btn btn-primary"'); ?>
 		<?php echo anchor(site_url('indikator_ta/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div></div>

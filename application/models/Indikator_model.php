@@ -17,7 +17,7 @@ class Indikator_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_indikator,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
+        $this->datatables->select('id_indikator,urutan,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
         $this->datatables->from('indikator');
         //add this line for join
         $this->datatables->join('standar', 'indikator.id_standar = standar.id_standar');

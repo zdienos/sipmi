@@ -23,6 +23,7 @@
 		    <th>Username</th>
 		    <th>Password</th>
 		    <th>Id Atasan</th>
+		    <th>Status</th>
 		    <th width="15%">Action</th>
                 </tr>
             </thead>
@@ -63,7 +64,16 @@
                         {
                             "data": "id_user",
                             "orderable": false
-                        },{"data": "nama_level"},{"data": "username"},{"data": "password"},{"data": "id_atasan"},
+                        },{"data": "nama_level",
+                            "className" : "text-center"},
+                            {"data": "username",
+                            "className" : "text-center"},
+                            {"data": "password",
+                            "className" : "text-center"},
+                            {"data": "id_atasan",
+                            "className" : "text-center"},
+                            {"data": "status",
+                            "className" : "text-center"},
                         {
                             "data" : "action",
                             "orderable": false,

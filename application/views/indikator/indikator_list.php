@@ -19,6 +19,7 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Urutan</th>
 		    <th>Standar</th>
 		    <th>Nama</th>
 		    <th>Bobot</th>
@@ -65,14 +66,21 @@
                         {
                             "data": "id_indikator",
                             "orderable": false
-                        },{"data": "nama_standar"},{"data": "nama"},{"data": "bobot"},{"data": "level"},{"data": "jangka_waktu"},{"data": "tgl_mulai"},
+                        },{"data": "urutan",
+                            "className" : "text-center"},{"data": "nama_standar",
+                            "className" : "text-center"},{"data": "nama",
+                            "className" : "text-center"},{"data": "bobot",
+                            "className" : "text-center"},{"data": "level",
+                            "className" : "text-center"},{"data": "jangka_waktu",
+                            "className" : "text-center"},{"data": "tgl_mulai",
+                            "className" : "text-center"},
                         {
                             "data" : "action",
                             "orderable": false,
                             "className" : "text-center"
                         }
                     ],
-                    order: [[0, 'desc']],
+                    order: [[0, 'asc']],
                     rowCallback: function(row, data, iDisplayIndex) {
                         var info = this.fnPagingInfo();
                         var page = info.iPage;

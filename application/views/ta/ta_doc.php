@@ -23,6 +23,7 @@
 		<th>Nama Ta</th>
 		<th>Awal</th>
 		<th>Akhir</th>
+		<th>Status</th>
 		
             </tr><?php
             foreach ($ta_data as $ta)
@@ -32,7 +33,8 @@
 		      <td><?php echo ++$start ?></td>
 		      <td><?php echo $ta->nama_ta ?></td>
 		      <td><?php echo $ta->awal ?></td>
-		      <td><?php echo $ta->akhir ?></td>	
+		      <td><?php echo $ta->akhir ?></td>
+		      <td><?php echo $ta->status ?></td>	
                 </tr>
                 <?php
             }

@@ -15,14 +15,15 @@
 		<?php echo anchor(site_url('ta/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div></div>
         </div>
-        <table class="table table-bordered table-striped table-condensed" style="font-size:11px" id="mytable">
+        <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
-                    <th>No</th>
+                    <th width="80px">No</th>
 		    <th>Nama Ta</th>
 		    <th>Awal</th>
 		    <th>Akhir</th>
-		    <th width="15%">Action</th>
+		    <th>Status</th>
+		    <th width="200px">Action</th>
                 </tr>
             </thead>
 	    
@@ -62,7 +63,7 @@
                         {
                             "data": "id_ta",
                             "orderable": false
-                        },{"data": "nama_ta"},{"data": "awal"},{"data": "akhir"},
+                        },{"data": "nama_ta"},{"data": "awal"},{"data": "akhir"},{"data": "status"},
                         {
                             "data" : "action",
                             "orderable": false,

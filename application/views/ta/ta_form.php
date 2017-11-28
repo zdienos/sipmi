@@ -22,6 +22,13 @@
             <label for="varchar">Akhir <?php echo form_error('akhir') ?></label>
             <input type="text" class="form-control" name="akhir" id="akhir" placeholder="Akhir" value="<?php echo $akhir; ?>" />
         </div>
+	    <div class="form-group">
+        <label for="varchar">Status <?php echo form_error('status') ?></label><br>
+        <label class="radio-inline">
+          <input type="radio" name="status" id="status" value="Aktif" <?php if (isset($status)){if($status=="Aktif"){echo "checked"; }} ?>>Aktif</label>
+      <label class="radio-inline">
+      <input type="radio" name="status" id="status" value="Non aktif" <?php if (isset($status)){if($status=="Non aktif"){echo "checked"; }} ?>>Non aktif</label>
+    </div>
 	    <input type="hidden" name="id_ta" value="<?php echo $id_ta; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('ta') ?>" class="btn btn-default">Cancel</a>
