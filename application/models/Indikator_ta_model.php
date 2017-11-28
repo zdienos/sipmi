@@ -17,12 +17,21 @@ class Indikator_ta_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_indikator_ta,nama_ta,indikator.nama as nama_indikator,tgl_isi,tgl_update,file,nilai,status,isian');
+        $this->datatables->select('id_indikator_ta,nama_ta,indikator.nama as nama_indikator,tgl_isi,tgl_update,file,nilai,indikator_ta.status as status,isian,user.username');
         $this->datatables->from('indikator_ta');
         //add this line for join
         $this->datatables->join('ta', 'indikator_ta.id_ta = ta.id_ta');
+        $this->datatables->join('user', 'indikator_ta.id_user = user.id_user');
         $this->datatables->join('indikator', 'indikator_ta.id_indikator = indikator.id_indikator');
-        $this->datatables->add_column('action', anchor(site_url('indikator_ta/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator_ta/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator_ta/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator_ta');
+        if($this->session->userdata('data')->nama_level=="UPM"||$this->session->userdata('data')->nama_level=="Admin"){ 
+        
+            $this->datatables->add_column('action', anchor(site_url('indikator_ta/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator_ta/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator_ta/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator_ta');
+        }else if($this->session->userdata('data')->nama_level=="Direktorat"){
+            $this->datatables->add_column('action', anchor(site_url('indikator_ta/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"'));
+        }else{
+            $this->datatables->where('indikator_ta.id_user',$this->session->userdata('data')->id_user);
+            $this->datatables->add_column('action', anchor(site_url('indikator_ta/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator_ta/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"'));
+        }
         return $this->datatables->generate();
     }
 
@@ -37,6 +46,8 @@ class Indikator_ta_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        $this->db->join('indikator','indikator.id_indikator=indikator_ta.id_indikator');
+        $this->db->join('ta','ta.id_ta=indikator_ta.id_ta');
         return $this->db->get($this->table)->row();
     }
     

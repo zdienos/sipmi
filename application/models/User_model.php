@@ -17,7 +17,7 @@ class User_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id_user,nama_level,username,password,id_atasan');
+        $this->datatables->select('id_user,nama_level,username,password,id_atasan,status');
         $this->datatables->from('user');
         //add this line for join
         $this->datatables->join('level', 'user.id_level = level.id_level');

@@ -13,5 +13,6 @@
 	    <tr><td>Nama Ta</td><td><?php echo $nama_ta; ?></td></tr>
 	    <tr><td>Awal</td><td><?php echo $awal; ?></td></tr>
 	    <tr><td>Akhir</td><td><?php echo $akhir; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('ta') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table><?php $this->load->view('templates/footer');?>

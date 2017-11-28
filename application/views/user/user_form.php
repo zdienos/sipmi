@@ -20,11 +20,18 @@
         </div>
 	    <div class="form-group">
             <label for="varchar">Password <?php echo form_error('password') ?></label>
-            <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" />
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="<?php echo $password; ?>" />
         </div>
 	    <div class="form-group">
             <label for="int">Atasan <?php echo form_error('id_atasan') ?></label>
             <?php echo cmb_dinamis('id_atasan','user','username','id_user',$id_atasan); ?>
+        </div>
+        <div class="form-group">
+            <label for="varchar">Status <?php echo form_error('status') ?></label><br>
+            <label class="radio-inline">
+              <input type="radio" name="status" id="status" value="Aktif" <?php if (isset($status)){if($status=="Aktif"){echo "checked"; }} ?>>Aktif</label>
+          <label class="radio-inline">
+          <input type="radio" name="status" id="status" value="Non aktif" <?php if (isset($status)){if($status=="Non aktif"){echo "checked"; }} ?>>Non aktif</label>
         </div>
 	    <input type="hidden" name="id_user" value="<?php echo $id_user; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

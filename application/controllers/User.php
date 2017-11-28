@@ -57,6 +57,7 @@ class User extends CI_Controller
 	    'username' => set_value('username'),
 	    'password' => set_value('password'),
 	    'id_atasan' => set_value('id_atasan'),
+	    'status' => set_value('status'),
 	);
         $this->load->view('user/user_form', $data);
     }
@@ -73,6 +74,7 @@ class User extends CI_Controller
 		'username' => $this->input->post('username',TRUE),
 		'password' => md5($this->input->post('password',TRUE)),
 		'id_atasan' => $this->input->post('id_atasan',TRUE),
+		'status' => $this->input->post('status',TRUE),
 	    );
 
             $this->User_model->insert($data);
@@ -94,6 +96,7 @@ class User extends CI_Controller
 		'username' => set_value('username', $row->username),
 		'password' => set_value('password', $row->password),
 		'id_atasan' => set_value('id_atasan', $row->id_atasan),
+	    'status' => set_value('status', $row->status),
 	    );
             $this->load->view('user/user_form', $data);
         } else {
@@ -114,12 +117,14 @@ class User extends CI_Controller
                 $data="";
                 $data = array(
                     'id_level' => $this->input->post('id_level',TRUE),
+                    'status' => $this->input->post('status',TRUE),
                     'username' => $this->input->post('username',TRUE),
                     'id_atasan' => $this->input->post('id_atasan',TRUE),
                     );
             }else{
                 $data = array(
                     'id_level' => $this->input->post('id_level',TRUE),
+                    'status' => $this->input->post('status',TRUE),
                     'username' => $this->input->post('username',TRUE),
                     'password' => md5($this->input->post('password',TRUE)),
                     'id_atasan' => $this->input->post('id_atasan',TRUE),
