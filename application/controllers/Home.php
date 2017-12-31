@@ -1,25 +1,64 @@
 <?php
 
 if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+exit('No direct script access allowed');
 
 class Home extends CI_Controller
 {
-    function __construct()
+  function __construct()
+  {
+    parent::__construct();
+    $this->load->model('Indikator_model');
+    $this->load->model('Indikator_ta_model');
+    $this->load->model('User_model');
+    $this->load->library('datatables');
+  }
+
+  public function index()
+  {
+    if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
     {
-        parent::__construct();
+      redirect('/');
     }
+    //header('Content-Type: application/json');
 
-    public function index()
+    // $data['json']=json_encode($this->User_model->get_all());
+    $data['json']=json_encode($this->Indikator_model->get_all());
+    $this->load->view('home',$data);
+
+  }
+
+  public function chart_indikator()
+  {
+    if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
     {
-		if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
-		{
-			redirect('/');
-		}
+      redirect('/');
+    }
+    //header('Content-Type: application/json');
 
-		$this->load->view('home');
-        
-    } 
+    // $data['json']=json_encode($this->User_model->get_all());
+    $data['json']=json_encode($this->Indikator_model->get_all());
+    $this->load->view('chart/indikator',$data);
+
+  }
+  public function chart_indikator_ta()
+  {
+    if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
+    {
+      redirect('/');
+    }
+    //header('Content-Type: application/json');
+
+    // $data['json']=json_encode($this->User_model->get_all());
+    $data['json']=json_encode($this->Indikator_ta_model->get_all());
+    $this->load->view('chart/indikator_ta',$data);
+
+  }
+  public function json()
+  {
+    header('Content-Type: application/json');
+    echo json_encode($this->Indikator_model->get_all());
+  }
 }
 
 /* End of file Workflows.php */

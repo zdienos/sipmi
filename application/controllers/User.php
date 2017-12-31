@@ -112,9 +112,8 @@ class User extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id_user', TRUE));
         } else {
-            $row = $this->User_model->get_by_id($id);
+            $row = $this->User_model->get_by_id($this->input->post('id_user', TRUE));
             if($this->input->post('password')==$row->password){
-                $data="";
                 $data = array(
                     'id_level' => $this->input->post('id_level',TRUE),
                     'status' => $this->input->post('status',TRUE),

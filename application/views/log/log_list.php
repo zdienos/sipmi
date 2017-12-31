@@ -1,8 +1,7 @@
 <?php $this->load->view('templates/header');?>
-<?php echo $menu_ta; ?>
         <div class="row" style="margin-bottom: 20px">
             <div class="col-md-4">
-                <h2>Indikator</h2>
+                <h2>Log List</h2>
             </div>
             <div class="col-md-4 text-center">
                 <div id="message">
@@ -11,30 +10,22 @@
             </div>
             <div class="col-md-4 text-right">
 				<div style="margin-top:20px;">
-                <?php if($this->session->userdata('data')->nama_level=="UPM"||$this->session->userdata('data')->nama_level=="Admin"){
-                    echo anchor(site_url('indikator_ta/create'), 'Create', 'class="btn btn-primary"');
-                }?>
-		<?php echo anchor(site_url('indikator_ta/excel'), 'Excel', 'class="btn btn-primary"'); ?>
-		<?php echo anchor(site_url('indikator_ta/word'), 'Word', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('log/create'), 'Create', 'class="btn btn-primary"'); ?>
+		<?php echo anchor(site_url('log/excel'), 'Excel', 'class="btn btn-primary"'); ?>
+		<?php echo anchor(site_url('log/word'), 'Word', 'class="btn btn-primary"'); ?>
 	    </div></div>
         </div>
-        <table class="table table-bordered table-striped table-condensed" style="font-size:11px" id="mytable">
+        <table class="table table-bordered table-striped" id="mytable">
             <thead>
                 <tr>
-                    <th>No</th>
-		    <th>Tahun Ajaran</th>
-		    <th>Indikator</th>
-		    <th>Sumber Data</th>
-		    <th>Tgl Isi</th>
-		    <th>Tgl Update</th>
-		    <th>File</th>
-		    <th>Nilai</th>
-		    <th>Status</th>
-		    <th>Isian</th>
-		    <th width="6%">Action</th>
+                    <th width="80px">No</th>
+		    <th>Id User</th>
+		    <th>Aktivitas</th>
+		    <th>Waktu</th>
+		    <th width="200px">Action</th>
                 </tr>
             </thead>
-
+	    
         </table><?php $this->load->view('templates/footer'); ?><script type="text/javascript">
             $(document).ready(function() {
                 $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
@@ -66,37 +57,12 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "indikator_ta/json", "data":{id:1},"type": "POST"},
+                    ajax: {"url": "log/json", "type": "POST"},
                     columns: [
                         {
-                            "data": "id_indikator_ta",
+                            "data": "id_log",
                             "orderable": false
-                        },{"data": "nama_ta"},
-                        {"data": "nama_indikator"},
-                        {"data": "username"},
-                        {"data": "tgl_isi"},
-                        {"data": "tgl_update"},
-                        {"data": "file",
-                        "render": function ( data, type, row, meta ) {
-                          if(data==""){
-                            return '<a href="#" class="label label-danger">File Tidak Ada</span>';
-                          }else{
-                            return '<a href="<?php echo base_url()."upload/"; ?>'+data+'" class="label label-success">Download</span>';
-                          }
-
-                        }},
-                        {"data": "nilai"},
-                        {"data": "status",
-                      "render":function (data, type, row, meta) {
-                          if (data=="Belum Lengkap") {
-                            return '<label class="label label-danger">'+data+'</label>';
-                          }else if(data=="Draft"){
-                            return '<label class="label label-warning">'+data+'</label>';
-                          }else{
-                            return '<label class="label label-success">'+data+'</label>';
-                          }
-                      }},
-                        {"data": "isian"},
+                        },{"data": "id_user"},{"data": "aktivitas"},{"data": "waktu"},
                         {
                             "data" : "action",
                             "orderable": false,
@@ -112,8 +78,5 @@
                         $('td:eq(0)', row).html(index);
                     }
                 });
-                $('#id1').on('click', function(e){
-    t.ajax.reload();
-});
             });
         </script>

@@ -21,6 +21,16 @@ class User_model extends CI_Model
         $this->datatables->from('user');
         //add this line for join
         $this->datatables->join('level', 'user.id_level = level.id_level');
+        $this->datatables->add_column('action', anchor(site_url('user/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('user/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('user/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"'.' onclick="javasciprt: return confirm(\'Apakah anda yakin akan menghapus data ini??\')"'), 'id_user');
+        return $this->datatables->generate();
+    }
+    // datatables
+    function json_filter_status($filter) {
+        $this->datatables->select('id_user,nama_level,username,password,id_atasan,status');
+        $this->datatables->from('user');
+        //add this line for join
+        $this->datatables->join('level', 'user.id_level = level.id_level');
+        $this->datatables->where('status',$filter);
         $this->datatables->add_column('action', anchor(site_url('user/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('user/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('user/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_user');
         return $this->datatables->generate();
     }
@@ -28,7 +38,7 @@ class User_model extends CI_Model
     // get all
     function get_all()
     {
-       
+        $this->db->join('level', 'user.id_level = level.id_level');
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -57,7 +67,7 @@ class User_model extends CI_Model
         $this->db->join('level','level.id_level=user.id_level');
         return $this->db->get($this->table)->row();
     }
-    
+
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_user', $q);
@@ -71,8 +81,8 @@ class User_model extends CI_Model
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_user', $q);
+    $this->db->order_by($this->id, $this->order);
+    $this->db->like('id_user', $q);
 	$this->db->or_like('id_level', $q);
 	$this->db->or_like('username', $q);
 	$this->db->or_like('password', $q);

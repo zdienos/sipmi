@@ -39,7 +39,7 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">Selamat Datang Di SPMI | Silahkan Login</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="" method="POST">
@@ -53,6 +53,11 @@
                                 <input type="submit" class="btn btn-lg btn-success btn-block" value="Login" />
                             </fieldset>
                         </form>
+                        <div class="text-center">
+                            <div id="message">
+                              <?php echo $this->session->userdata('pesan_gagal') <> '' ? $this->session->userdata('pesan_gagal') : ''; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

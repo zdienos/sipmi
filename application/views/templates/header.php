@@ -18,7 +18,7 @@
             .dataTables_wrapper {
                 min-height: 500px
             }
-            
+
             .dataTables_processing {
                 position: absolute;
                 top: 50%;
@@ -34,7 +34,7 @@
         </style>
     </head>
     <body>
-	
+
 		<!-- Main Menu -->
 		<div id="wrapper">
 

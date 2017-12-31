@@ -26,10 +26,10 @@
 		    <th>Level</th>
 		    <th>Jangka Waktu</th>
 		    <th>Tgl Mulai</th>
-		    <th width="15%">Action</th>
+		    <th width="6%">Action</th>
                 </tr>
             </thead>
-	    
+
         </table><?php $this->load->view('templates/footer'); ?><script type="text/javascript">
             $(document).ready(function() {
                 $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)

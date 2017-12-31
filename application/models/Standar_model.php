@@ -21,7 +21,7 @@ class Standar_model extends CI_Model
         $this->datatables->from('standar');
         //add this line for join
         //$this->datatables->join('table2', 'standar.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('standar/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('standar/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('standar/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_standar');
+        $this->datatables->add_column('action', anchor(site_url('standar/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('standar/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('standar/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"'.' onclick="javasciprt: return confirm(\'Apakah anda yakin akan menghapus data ini??\')"'), 'id_standar');
         return $this->datatables->generate();
     }
 
@@ -38,7 +38,7 @@ class Standar_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    
+
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('id_standar', $q);

@@ -27,7 +27,7 @@
 		    <th width="15%">Action</th>
                 </tr>
             </thead>
-	    
+
         </table><?php $this->load->view('templates/footer'); ?><script type="text/javascript">
             $(document).ready(function() {
                 $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
@@ -73,7 +73,15 @@
                             {"data": "id_atasan",
                             "className" : "text-center"},
                             {"data": "status",
-                            "className" : "text-center"},
+                            "className" : "text-center",
+                            "render": function ( data, type, row, meta ) {
+                                if (data=="Aktif") {
+                                    return '<span class="label label-success">Aktif</span>';
+                                }else{
+                                    return '<span class="label label-danger">Non Aktif</span>';
+                                }
+                            }
+                            },
                         {
                             "data" : "action",
                             "orderable": false,

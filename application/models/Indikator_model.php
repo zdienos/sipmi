@@ -1,90 +1,96 @@
 <?php
 
 if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+exit('No direct script access allowed');
 
 class Indikator_model extends CI_Model
 {
 
-    public $table = 'indikator';
-    public $id = 'id_indikator';
-    public $order = 'DESC';
+  public $table = 'indikator';
+  public $id = 'id_indikator';
+  public $order = 'ASC';
 
-    function __construct()
-    {
-        parent::__construct();
-    }
+  function __construct()
+  {
+    parent::__construct();
+  }
 
-    // datatables
-    function json() {
-        $this->datatables->select('id_indikator,urutan,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
-        $this->datatables->from('indikator');
-        //add this line for join
-        $this->datatables->join('standar', 'indikator.id_standar = standar.id_standar');
-        $this->datatables->add_column('action', anchor(site_url('indikator/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator');
-        return $this->datatables->generate();
-    }
+  // datatables
+  function json() {
+    $this->datatables->select('id_indikator,urutan,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
+    $this->datatables->from('indikator');
+    //add this line for join
+    $this->datatables->join('standar', 'indikator.id_standar = standar.id_standar');
+    $this->datatables->add_column('action', anchor(site_url('indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning btn-xs"')." ".anchor(site_url('indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger btn-xs"'.' onclick="javasciprt: return confirm(\'Apakah anda yakin akan menghapus data ini??\')"'), 'id_indikator');
+    return $this->datatables->generate();
+  }
+  function get_by_idstandar($id,$lampiran)
+  {
+      $this->db->where('id_standar', $id);
+      $this->db->where('lampiran', $lampiran);
+      return $this->db->get($this->table)->result();
+  }
+  // get all
+  function get_all()
+  {
+    $this->db->join('standar', 'indikator.id_standar = standar.id_standar');
+    $this->db->order_by('indikator.id_standar', $this->order);
+    return $this->db->get($this->table)->result();
+  }
 
-    // get all
-    function get_all()
-    {
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->result();
-    }
+  // get data by id
+  function get_by_id($id)
+  {
+    $this->db->where($this->id, $id);
+    return $this->db->get($this->table)->row();
+  }
 
-    // get data by id
-    function get_by_id($id)
-    {
-        $this->db->where($this->id, $id);
-        return $this->db->get($this->table)->row();
-    }
-    
-    // get total rows
-    function total_rows($q = NULL) {
-        $this->db->like('id_indikator', $q);
-	$this->db->or_like('id_standar', $q);
-	$this->db->or_like('nama', $q);
-	$this->db->or_like('bobot', $q);
-	$this->db->or_like('level', $q);
-	$this->db->or_like('jangka_waktu', $q);
-	$this->db->or_like('tgl_mulai', $q);
-	$this->db->from($this->table);
-        return $this->db->count_all_results();
-    }
+  // get total rows
+  function total_rows($q = NULL) {
+    $this->db->like('id_indikator', $q);
+    $this->db->or_like('id_standar', $q);
+    $this->db->or_like('nama', $q);
+    $this->db->or_like('bobot', $q);
+    $this->db->or_like('level', $q);
+    $this->db->or_like('jangka_waktu', $q);
+    $this->db->or_like('tgl_mulai', $q);
+    $this->db->from($this->table);
+    return $this->db->count_all_results();
+  }
 
-    // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('id_indikator', $q);
-	$this->db->or_like('id_standar', $q);
-	$this->db->or_like('nama', $q);
-	$this->db->or_like('bobot', $q);
-	$this->db->or_like('level', $q);
-	$this->db->or_like('jangka_waktu', $q);
-	$this->db->or_like('tgl_mulai', $q);
-	$this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
-    }
+  // get data with limit and search
+  function get_limit_data($limit, $start = 0, $q = NULL) {
+    $this->db->order_by($this->id, $this->order);
+    $this->db->like('id_indikator', $q);
+    $this->db->or_like('id_standar', $q);
+    $this->db->or_like('nama', $q);
+    $this->db->or_like('bobot', $q);
+    $this->db->or_like('level', $q);
+    $this->db->or_like('jangka_waktu', $q);
+    $this->db->or_like('tgl_mulai', $q);
+    $this->db->limit($limit, $start);
+    return $this->db->get($this->table)->result();
+  }
 
-    // insert data
-    function insert($data)
-    {
-        $this->db->insert($this->table, $data);
-    }
+  // insert data
+  function insert($data)
+  {
+    $this->db->insert($this->table, $data);
+  }
 
-    // update data
-    function update($id, $data)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->update($this->table, $data);
-    }
+  // update data
+  function update($id, $data)
+  {
+    $this->db->where($this->id, $id);
+    $this->db->update($this->table, $data);
+  }
 
-    // delete data
-    function delete($id)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
-    }
+  // delete data
+  function delete($id)
+  {
+    $this->db->where($this->id, $id);
+    $this->db->delete($this->table);
+  }
 
 }
 

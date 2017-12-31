@@ -1,52 +1,73 @@
 <?php
 
 if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
-    function __construct()
+  function __construct()
+  {
+    parent::__construct();
+    $this->load->model('User_model');
+    $this->load->model('Log_model');
+  }
+
+  public function index()
+  {
+    if($this->session->userdata('logined') && $this->session->userdata('logined') == true)
     {
-		parent::__construct();
-		$this->load->model('User_model');
+      redirect('home');
     }
 
-    public function index()
+    if(!$this->input->post())
     {
-		if($this->session->userdata('logined') && $this->session->userdata('logined') == true)
-		{
-			redirect('home');
-		}
-		
-		if(!$this->input->post())
-		{
-			$this->load->view('login');
-		}
-		else
-		{
-			$username	= $this->input->post('username');
-			$password	= $this->input->post('password');
-			$cek_login	= $this->User_model->get_by_login($username,$password);
-			if(!empty($cek_login))
-			{
-				$this->session->set_userdata('logined', true);
-				$this->session->set_userdata('data', $cek_login);
-				
-				redirect("home");
-			}
-			else 
-			{
-				redirect("/");
-			}
-		}
-        
-    } 
-	
-	public function logout()
+      $this->load->view('login');
+    }
+    else
     {
-		$this->session->unset_userdata('logined');
-		redirect("/");
-    } 
+      $username	= $this->input->post('username');
+      $password	= $this->input->post('password');
+      $cek_login	= $this->User_model->get_by_login($username,$password);
+      if(!empty($cek_login))
+      {
+        if ($cek_login->status!="Aktif") {
+          $this->session->set_flashdata('pesan_gagal', '<span class="label label-danger">
+          *Akun anda belum aktif!</span>');
+          redirect("/");
+        }else{
+          $this->session->set_userdata('logined', true);
+          $this->session->set_userdata('data', $cek_login);
+                $data_log = array(
+        'id_user' => $this->session->userdata('data')->id_user,
+        'aktivitas' => 'Logout',
+        'waktu' => date("Y-m-d h:i:s"),
+          );
+          $this->Log_model->insert($data_log);
+          redirect("home");
+
+        }
+      }
+      else
+      {
+        $this->session->set_flashdata('pesan_gagal', '<span class="label label-danger">
+        *Username dan Password anda tidak valid!</span>');
+        redirect("/");
+      }
+    }
+
+  }
+
+  public function logout()
+  {
+    $data_log = array(
+'id_user' => $this->session->userdata('data')->id_user,
+'aktivitas' => 'Logout',
+'waktu' => date("Y-m-d h:i:s"),
+);
+$this->Log_model->insert($data_log);
+    $this->session->unset_userdata('logined');
+    redirect("/");
+  }
 }
 
 /* End of file Workflows.php */
