@@ -17,7 +17,7 @@ class Indikator_ta_model extends CI_Model
 
   // datatables
   function json() {
-    $this->datatables->select('id_indikator_ta,nama_ta,indikator.nama as nama_indikator,tgl_isi,tgl_update,file,nilai,indikator_ta.status as status,isian,concat(user.username," : " ,level.nama_level) as username, concat(ta.status,"," ,indikator_ta.id_indikator_ta,",",indikator_ta.status) as status_ta');
+    $this->datatables->select('id_indikator_ta,nama_ta,indikator.nama as nama_indikator,tgl_isi,tgl_update,file,nilai,indikator_ta.status as status,isian,concat(user.username," : " ,level.nama_level) as username, concat(ta.status,",",indikator_ta.id_indikator_ta,",",indikator_ta.status) as status_ta,concat(status_aksi,",",indikator_ta.id_indikator_ta) as status_aksi');
     $this->datatables->from('indikator_ta');
     //add this line for join
     $this->datatables->join('ta', 'indikator_ta.id_ta = ta.id_ta');
@@ -37,7 +37,7 @@ class Indikator_ta_model extends CI_Model
   }
   // datatables
   function json_ta($id_ta) {
-    $this->datatables->select('id_indikator_ta,nama_ta,indikator.nama as nama_indikator,tgl_isi,tgl_update,file,nilai,indikator_ta.status as status,isian,concat(user.username," : " ,level.nama_level) as username');
+    $this->datatables->select('id_indikator_ta,nama_ta,indikator.nama as nama_indikator,tgl_isi,tgl_update,file,nilai,indikator_ta.status as status,isian,concat(user.username," : " ,level.nama_level) as username, concat(ta.status,",",indikator_ta.id_indikator_ta,",",indikator_ta.status) as status_ta,concat(status_aksi,",",indikator_ta.id_indikator_ta) as status_aksi');
     $this->datatables->from('indikator_ta');
     //add this line for join
     $this->datatables->join('ta', 'indikator_ta.id_ta = ta.id_ta');

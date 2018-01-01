@@ -106,6 +106,8 @@
             return '<label class="label label-danger">'+data+'</label>';
           }else if(data=="Draft"){
             return '<label class="label label-warning">'+data+'</label>';
+          }else if(data=="Kosong"){
+            return '<label class="label label-default">'+data+'</label>';
           }else{
             return '<label class="label label-success">'+data+'</label>';
           }
@@ -113,9 +115,21 @@
         {"data": "isian"},
         <?php   if($this->session->userdata('data')->nama_level=="UPM"||$this->session->userdata('data')->nama_level=="Admin"||$this->session->userdata('data')->nama_level=="Direktorat"){ ?>
           {
-              "data" : "action",
+              "data" : "status_aksi",
               "orderable": false,
-              "className" : "text-center"
+              "className" : "text-center",
+              "render": function ( data, type, row, meta ) {
+                if(data){
+                var replace = data.replace(/\s/g,'');
+                var array = replace.split(',');
+                if (array[0]=="Edit") {
+                  return '<a href="<?php echo base_url()."indikator_ta/update/"; ?>'+array[1]+'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a> <a href="<?php echo base_url()."indikator_ta/delete/"; ?>'+array[1]+'" class="btn btn-danger btn-xs" onclick="javasciprt: return confirm(\'Apakah anda yakin akan menghapus data ini??\')"><i class="fa fa-trash"></i></a>';
+                }else{
+                  return '<a href="<?php echo base_url()."indikator_ta/update/"; ?>'+array[1]+'" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a> <a href="<?php echo base_url()."indikator_ta/delete/"; ?>'+array[1]+'" class="btn btn-danger btn-xs" onclick="javasciprt: return confirm(\'Apakah anda yakin akan menghapus data ini??\')"><i class="fa fa-trash"></i></a>';
+                }
+                }
+
+              }
           }
         <?php }else{ ?>
           {"data": "status_ta",

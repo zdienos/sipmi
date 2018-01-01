@@ -165,6 +165,12 @@ class Indikator_ta extends CI_Controller
       if(!empty($result)){
         $data_user=$this->input->post('id_user');
         for ($i=0; $i < count($data_user); $i++) {
+          $status="";
+          if ($this->input->post('status',TRUE)=="") {
+              $status="Kosong";
+          }else{
+              $status=$this->input->post('status',TRUE);
+          }
           if(empty($this->Indikator_ta_model->get_data_duplikat($this->input->post('id_ta',TRUE),$this->input->post('id_indikator',TRUE),$data_user[$i]))){
             $data = array(
               'id_ta' => $this->input->post('id_ta',TRUE),
@@ -172,10 +178,11 @@ class Indikator_ta extends CI_Controller
               'id_indikator' => $this->input->post('id_indikator',TRUE),
               'tgl_isi' => $this->input->post('tgl_isi',TRUE),
               'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
-              'tgl_update' => $this->input->post('tgl_update',TRUE),
+              'tgl_update' => date("Y-m-d h:i:s"),
+              'status_aksi' => 'Tambah',
               'file' => $result['file_name'],
               'nilai' => $this->input->post('nilai',TRUE),
-              'status' => $this->input->post('status',TRUE),
+              'status' => $status,
               'isian' => $this->input->post('isian',TRUE),
             );
             $data_users=$this->User_model->get_by_id($data_user[$i]);
@@ -200,16 +207,23 @@ class Indikator_ta extends CI_Controller
         for ($i=0; $i < count($data_user); $i++) {
           //echo $data_user[$i];
           if(empty($this->Indikator_ta_model->get_data_duplikat($this->input->post('id_ta',TRUE),$this->input->post('id_indikator',TRUE),$data_user[$i]))){
+            $status="";
+            if ($this->input->post('status',TRUE)=="") {
+                $status="Kosong";
+            }else{
+                $status=$this->input->post('status',TRUE);
+            }
             $data = array(
               'id_ta' => $this->input->post('id_ta',TRUE),
               'id_user' => $data_user[$i],
               'id_indikator' => $this->input->post('id_indikator',TRUE),
               'tgl_isi' => $this->input->post('tgl_isi',TRUE),
               'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
-              'tgl_update' => $this->input->post('tgl_update',TRUE),
+              'tgl_update' => date("Y-m-d h:i:s"),
+              'status_aksi' => 'Tambah',
               'file' => '',
               'nilai' => $this->input->post('nilai',TRUE),
-              'status' => $this->input->post('status',TRUE),
+              'status' => $status,
               'isian' => $this->input->post('isian',TRUE),
             );
             $data_users=$this->User_model->get_by_id($data_user[$i]);
@@ -286,7 +300,7 @@ class Indikator_ta extends CI_Controller
       $config['upload_path']       = './upload/';
       $config['allowed_types']     = "*";
       $config['overwrite']         = 'true';
-      $config['file_name']         = $id_indikator."_".round(microtime(true) * 1000);
+      $config['file_name']         = $id_indikator."_".date("Y-m-d h:i:s");
 
       $this->load->library('upload', $config);
       if (!$this->upload->do_upload('file')) {
@@ -295,8 +309,9 @@ class Indikator_ta extends CI_Controller
         //print_r($error);
         if($this->session->userdata('data')->nama_level!="UPM"){
           $data = array(
-            'tgl_update' => $this->input->post('tgl_update',TRUE),
+            'tgl_update' => date("Y-m-d h:i:s"),
             'isian' => $this->input->post('isian',TRUE),
+            'status_aksi' => 'Edit',
           );
         }else if($this->session->userdata('data')->nama_level=="UPM"){
           $data = array(
@@ -306,6 +321,7 @@ class Indikator_ta extends CI_Controller
             'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
             'nilai' => $this->input->post('nilai',TRUE),
             'status' => $this->input->post('status',TRUE),
+            'status_aksi' => 'Read',
           );
         }else{
           $data = array(
@@ -313,7 +329,6 @@ class Indikator_ta extends CI_Controller
             'id_ta' => $this->input->post('id_ta',TRUE),
             'id_indikator' => $this->input->post('id_indikator',TRUE),
             'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
-            'tgl_update' => $this->input->post('tgl_update',TRUE),
             'nilai' => $this->input->post('nilai',TRUE),
             'status' => $this->input->post('status',TRUE),
             'isian' => $this->input->post('isian',TRUE),
@@ -329,7 +344,6 @@ class Indikator_ta extends CI_Controller
             'id_ta' => $this->input->post('id_ta',TRUE),
             'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
             'id_indikator' => $this->input->post('id_indikator',TRUE),
-            'tgl_update' => $this->input->post('tgl_update',TRUE),
             'file' =>  $result['file_name'],
             'nilai' => $this->input->post('nilai',TRUE),
             'status' => $this->input->post('status',TRUE),
@@ -337,8 +351,9 @@ class Indikator_ta extends CI_Controller
           );
         }else{
           $data = array(
-            'tgl_update' => $this->input->post('tgl_update',TRUE),
+            'tgl_update' => date("Y-m-d h:i:s"),
             'file' =>  $result['file_name'],
+            'status_aksi' => 'Edit',
             'isian' => $this->input->post('isian',TRUE),
           );
         }
