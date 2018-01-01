@@ -11,8 +11,13 @@
             </div>
             <div class="col-md-4 text-right">
 				<div style="margin-top:20px;">
+<<<<<<< HEAD
                 <?php if($this->session->userdata('data')->nama_level=="UPM"||$this->session->userdata('data')->nama_level=="Admin"){
                     echo anchor(site_url('indikator_ta/create'), 'Create', 'class="btn btn-primary"');
+=======
+                <?php if($this->session->userdata('data')->nama_level=="UPM"||$this->session->userdata('data')->nama_level=="Admin"){ 
+                    echo anchor(site_url('indikator_ta/create'), 'Create', 'class="btn btn-primary"'); 
+>>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
                 }?>
 		<?php echo anchor(site_url('indikator_ta/excel'), 'Excel', 'class="btn btn-primary"'); ?>
 		<?php echo anchor(site_url('indikator_ta/word'), 'Word', 'class="btn btn-primary"'); ?>
