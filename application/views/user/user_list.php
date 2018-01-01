@@ -73,7 +73,6 @@
                             {"data": "id_atasan",
                             "className" : "text-center"},
                             {"data": "status",
-<<<<<<< HEAD
                             "className" : "text-center",
                             "render": function ( data, type, row, meta ) {
                                 if (data=="Aktif") {
@@ -83,9 +82,6 @@
                                 }
                             }
                             },
-=======
-                            "className" : "text-center"},
->>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
                         {
                             "data" : "action",
                             "orderable": false,

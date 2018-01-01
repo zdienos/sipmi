@@ -15,7 +15,6 @@ class Indikator_model extends CI_Model
     parent::__construct();
   }
 
-<<<<<<< HEAD
   // datatables
   function json() {
     $this->datatables->select('id_indikator,urutan,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
@@ -38,17 +37,6 @@ class Indikator_model extends CI_Model
     $this->db->order_by('indikator.id_standar', $this->order);
     return $this->db->get($this->table)->result();
   }
-=======
-    // datatables
-    function json() {
-        $this->datatables->select('id_indikator,urutan,nama_standar,nama,bobot,level,jangka_waktu,tgl_mulai');
-        $this->datatables->from('indikator');
-        //add this line for join
-        $this->datatables->join('standar', 'indikator.id_standar = standar.id_standar');
-        $this->datatables->add_column('action', anchor(site_url('indikator/read/$1'),'<i class="fa fa-info"></i>','class="btn btn-success"')." ".anchor(site_url('indikator/update/$1'),'<i class="fa fa-pencil"></i>','class="btn btn-warning"')." ".anchor(site_url('indikator/delete/$1'),'<i class="fa fa-trash"></i>','class="btn btn-danger"','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id_indikator');
-        return $this->datatables->generate();
-    }
->>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
 
   // get data by id
   function get_by_id($id)

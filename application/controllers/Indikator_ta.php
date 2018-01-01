@@ -5,7 +5,6 @@ exit('No direct script access allowed');
 
 class Indikator_ta extends CI_Controller
 {
-<<<<<<< HEAD
   //public $format_file='doc|docx|pdf|xls|xlsx|jpeg|jpg|png|zip|rar';
   function __construct()
   {
@@ -22,23 +21,6 @@ class Indikator_ta extends CI_Controller
     if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
     {
       redirect('/');
-=======
-    //public $format_file='doc|docx|pdf|xls|xlsx|jpeg|jpg|png|zip|rar';
-    function __construct()
-    {
-        parent::__construct();
-
-        $this->load->model('Indikator_ta_model');
-        $this->load->model('Level_model');
-        $this->load->model('User_model');
-        $this->load->library('form_validation');
-
-        if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
-        {
-            redirect('/');
-        }        
-        $this->load->library('datatables');
->>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
     }
     $this->load->library('datatables');
   }
@@ -52,7 +34,6 @@ class Indikator_ta extends CI_Controller
       $url =$urls."".$value->id_ta;
       $ta_view .= '<li><a id="id'.$key.'" href="'.$url.'">'.$value->nama_ta.'</a></li>';
     }
-<<<<<<< HEAD
     $ta_view .="</ul>";
     $data['menu_ta']=$ta_view;
     $this->load->view('indikator_ta/indikator_ta_list',$data);
@@ -235,170 +216,6 @@ class Indikator_ta extends CI_Controller
             $data = array(
               'id_ta' => $this->input->post('id_ta',TRUE),
               'id_user' => $data_user[$i],
-=======
-
-    public function read($id) 
-    {
-        $row = $this->Indikator_ta_model->get_by_id($id);
-        if ($row) {
-            $data = array(
-                'id_indikator_ta' => $row->id_indikator_ta,
-                'id_ta' => $row->id_ta,
-                'id_indikator' => $row->id_indikator,
-                'tgl_isi' => $row->tgl_isi,
-                'tgl_update' => $row->tgl_update,
-                'file' => $row->file,
-                'nilai' => $row->nilai,
-                'status' => $row->status,
-                'isian' => $row->isian,
-              );
-            $this->load->view('indikator_ta/indikator_ta_read', $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('indikator_ta'));
-        }
-    }
-
-    public function create() 
-    {
-        $data = array(
-            'button' => 'Create',
-            'data_level' => $this->Level_model->get_all(),
-            'action' => site_url('indikator_ta/create_action'),
-            'id_indikator_ta' => set_value('id_indikator_ta'),
-            'id_ta' => set_value('id_ta'),
-            'id_indikator' => set_value('id_indikator'),
-            'tgl_isi' => set_value('tgl_isi'),
-            'tgl_akhir' => set_value('tgl_akhir'),
-            'tgl_update' => set_value('tgl_update'),
-            'file' => set_value('file'),
-            'nilai' => set_value('nilai',array("2","3","4")),
-            'status' => set_value('status',array("Belum Lengkap","Draft","Lengkap")),
-            'isian' => set_value('isian'),
-            );
-        $this->load->view('indikator_ta/indikator_ta_form', $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $id_indikator=$this->input->post('id_indikator',TRUE);
-            $config['upload_path']       = './upload/';
-            $config['allowed_types']     =  "*";
-            $config['overwrite']         = 'true';
-            $config['file_name']         = $id_indikator."_".round(microtime(true) * 1000);
-
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('file')) {
-                $error = $this->upload->display_errors();
-            // menampilkan pesan error
-                print_r($error);
-            } else {
-                $result = $this->upload->data();
-            }
-            //echo $result['file_name'];
-           
-              $data_user=$this->input->post('id_user');
-              for ($i=0; $i < count($data_user); $i++) { 
-                $data = array(
-                    'id_ta' => $this->input->post('id_ta',TRUE),
-                    'id_user' => $data_user[$i],
-                    'id_indikator' => $this->input->post('id_indikator',TRUE),
-                    'tgl_isi' => $this->input->post('tgl_isi',TRUE),
-                    'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
-                    'tgl_update' => $this->input->post('tgl_update',TRUE),
-                    'file' => $result['file_name'],
-                    'nilai' => $this->input->post('nilai',TRUE),
-                    'status' => $this->input->post('status',TRUE),
-                    'isian' => $this->input->post('isian',TRUE),
-                    );                    
-                $this->Indikator_ta_model->insert($data);
-              }
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('indikator_ta'));
-        }
-    }
-
-    public function update($id) 
-    {
-        $row = $this->Indikator_ta_model->get_by_id($id);
-        
-        if ($row) {
-            $data = array(
-                'button' => 'Update',
-                'action' => site_url('indikator_ta/update_action'),
-                'id_user' => set_value('id_user', $row->id_user),
-                'id_indikator_ta' => set_value('id_indikator_ta', $row->id_indikator_ta),
-                'id_ta' => set_value('id_ta', $row->id_ta),
-                'id_indikator' => set_value('id_indikator', $row->id_indikator),
-                'tgl_isi' => set_value('tgl_isi', $row->tgl_isi),
-                'tgl_update' => set_value('tgl_update', $row->tgl_update),
-                'tgl_akhir' => set_value('tgl_akhir', $row->tgl_akhir),
-                'file' => set_value('file', $row->file),
-                'nilai' => set_value('nilai',array("2","3","4")),
-                'status' => set_value('status',array("Belum Lengkap","Draft","Lengkap")),
-                'nilai_data' => set_value('nilai', $row->nilai),
-                'status_data' => set_value('status', $row->status),
-                'isian' => set_value('isian', $row->isian),
-                'nama_indikator' => set_value('nama_indikator', $row->nama),
-                'nama_ta' => set_value('nama_ta', $row->nama_ta),
-                );
-            $this->load->view('indikator_ta/indikator_ta_form', $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('indikator_ta'));
-        }
-    }
-
-    public function update_action() 
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('id_indikator_ta', TRUE));
-        } else {
-             $id_indikator=$this->input->post('id_indikator',TRUE);
-            $config['upload_path']       = './upload/';
-            $config['allowed_types']     = "*";
-            $config['overwrite']         = 'true';
-            $config['file_name']         = $id_indikator."_".round(microtime(true) * 1000);
-
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('file')) {
-                $error = $this->upload->display_errors();
-            // menampilkan pesan error
-                //print_r($error);
-                if($this->session->userdata('data')->nama_level!="UPM"){ 
-                    $data = array(
-                        'tgl_update' => $this->input->post('tgl_update',TRUE),
-                  'isian' => $this->input->post('isian',TRUE),
-                  );
-            }else{
-                $data = array(
-                    'id_user' => $this->input->post('id_user', TRUE),
-              'id_ta' => $this->input->post('id_ta',TRUE),
-              'id_indikator' => $this->input->post('id_indikator',TRUE),
-              'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
-              'tgl_update' => $this->input->post('tgl_update',TRUE),
-              'nilai' => $this->input->post('nilai',TRUE),
-              'status' => $this->input->post('status',TRUE),
-              'isian' => $this->input->post('isian',TRUE),
-              );
-            }
-            } else {
-                $row = $this->Indikator_ta_model->get_by_id($this->input->post('id_indikator_ta', TRUE));
-                unlink("./upload/".$row->file);
-                $result = $this->upload->data();
-                if($this->session->userdata('data')->nama_level=="UPM"){ 
-                 $data = array(
-                    'id_user' => $this->input->post('id_user', TRUE),
-              'id_ta' => $this->input->post('id_ta',TRUE),
-              'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
->>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
               'id_indikator' => $this->input->post('id_indikator',TRUE),
               'tgl_isi' => $this->input->post('tgl_isi',TRUE),
               'tgl_akhir' => $this->input->post('tgl_akhir',TRUE),
@@ -408,7 +225,6 @@ class Indikator_ta extends CI_Controller
               'nilai' => $this->input->post('nilai',TRUE),
               'status' => $status,
               'isian' => $this->input->post('isian',TRUE),
-<<<<<<< HEAD
             );
             $data_users=$this->User_model->get_by_id($data_user[$i]);
             $temp_user_succes .= $data_users->username.", ";
@@ -425,22 +241,6 @@ class Indikator_ta extends CI_Controller
                 $temp_user_error .= $data_users->username.", ";
                 //echo $data_users->username;
           }
-=======
-              );
-            }else{
-                $data = array(
-              'tgl_update' => $this->input->post('tgl_update',TRUE),
-              'file' =>  $result['file_name'],
-              'isian' => $this->input->post('isian',TRUE),
-              );
-            }
-            }
-           
-
-            $this->Indikator_ta_model->update($this->input->post('id_indikator_ta', TRUE), $data);
-            $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('indikator_ta'));
->>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
         }
       }
       $temp_error .= "User <b>".$temp_user_error."</b> gagal ditambahkan karena data sudah ada!!";
@@ -596,7 +396,6 @@ class Indikator_ta extends CI_Controller
     }
   }
 
-<<<<<<< HEAD
   public function _rules()
   {
 
@@ -616,27 +415,6 @@ class Indikator_ta extends CI_Controller
 
   public function excel()
   {
-=======
-    public function _rules() 
-    {
-       
-       if($this->session->userdata('data')->nama_level=="UPM"){ 
-        $this->form_validation->set_rules('id_ta', 'id ta', 'trim|required');
-        $this->form_validation->set_rules('id_indikator', 'id indikator', 'trim|required');
-        $this->form_validation->set_rules('tgl_isi', 'tgl isi', 'trim|required');
-     //$this->form_validation->set_rules('file', 'file', 'trim|required');
-       }
-       if($this->session->userdata('data')->nama_level!="UPM"){ 
-        $this->form_validation->set_rules('tgl_update', 'tgl update', 'trim|required');
-        $this->form_validation->set_rules('isian', 'isian', 'trim|required');
-       }
-       $this->form_validation->set_rules('id_indikator_ta', 'id_indikator_ta', 'trim');
-       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
-   }
-
-   public function excel()
-   {
->>>>>>> 3d04797ca1e7b695c92ec2e90e3295f5b95892db
     $this->load->helper('exportexcel');
     $namaFile = "indikator_ta.xls";
     $judul = "indikator_ta";
