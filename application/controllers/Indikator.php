@@ -10,6 +10,7 @@ class Indikator extends CI_Controller
     parent::__construct();
 
     $this->load->model('Indikator_model');
+        $this->load->model('Log_model');
     $this->load->library('form_validation');
 
     if(!$this->session->userdata('logined') || $this->session->userdata('logined') != true)
@@ -133,7 +134,8 @@ class Indikator extends CI_Controller
         $data = array(
           'id_standar' => $this->input->post('id_standar',TRUE),
           'nama' => $this->input->post('nama',TRUE),
-          'bobot' => "$this->input->post('bobot',TRUE)",
+          'bobot' => $this->input->post('bobot',TRUE),
+          'lampiran' => $this->input->post('lampiran',TRUE),
           'level' => 0,
           'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
           'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
@@ -144,6 +146,7 @@ class Indikator extends CI_Controller
           'id_standar' => $this->input->post('id_standar',TRUE),
           'nama' => $this->input->post('nama',TRUE),
           'bobot' => $this->input->post('bobot',TRUE),
+          'lampiran' => $this->input->post('lampiran',TRUE),
           'level' => $this->input->post('level',TRUE),
           'jangka_waktu' => $this->input->post('jangka_waktu',TRUE),
           'tgl_mulai' => $this->input->post('tgl_mulai',TRUE),
@@ -181,6 +184,7 @@ $this->Log_model->insert($data_log);
         'tgl_mulai' => set_value('tgl_mulai', $row->tgl_mulai),
         'keterangan' => set_value('keterangan',array(1,2)),
         'keterangan_data' => $row->keterangan,
+        'lampiran_data' => $row->lampiran,
       );
       $this->load->view('indikator/indikator_form', $data);
     } else {

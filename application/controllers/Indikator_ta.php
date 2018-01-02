@@ -94,6 +94,13 @@ class Indikator_ta extends CI_Controller
     //print_r($data);
     echo json_encode($data);
   }
+  public function indikator_by_standar2()
+  {
+    $id=$id=$this->input->post('id');
+    $data=$this->Indikator_model->get_by_idstandar2($id);
+    //print_r($data);
+    echo json_encode($data);
+  }
   public function read($id)
   {
     $row = $this->Indikator_ta_model->get_by_id($id);

@@ -155,11 +155,11 @@
       order: [[0, 'desc']],
       rowCallback: function(row, data, iDisplayIndex) {
         if(data.status=="Belum Lengkap"){
-          $(row).find('td').addClass('danger');
+          $(row).find('td').css('background-color','#E57373');
         }else if(data.status=="Lengkap"){
-          $(row).find('td').addClass('success');
+          $(row).find('td').css('background-color','#81C784');
         }else if(data.status=="Draft"){
-          $(row).find('td').addClass('warning');
+          $(row).find('td').css('background-color','#FFD54F');
         }
         var info = this.fnPagingInfo();
         var page = info.iPage;

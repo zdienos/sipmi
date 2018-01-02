@@ -30,6 +30,11 @@ class Indikator_model extends CI_Model
       $this->db->where('lampiran', $lampiran);
       return $this->db->get($this->table)->result();
   }
+  function get_by_idstandar2($id)
+  {
+      $this->db->where('id_standar', $id);
+      return $this->db->get($this->table)->result();
+  }
   // get all
   function get_all()
   {
